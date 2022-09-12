@@ -1,0 +1,195 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  background-image: linear-gradient(-45deg, #FF8F9A, #941724, #FF8F9A, #564780, #C72031, #FF8F9A, #470B11, #564780, #FF8F9A, #3B0006);
+  background-size: 400%;
+  animation: bg-animation 50s infinite;
+  min-height: 100vh;
+}
+
+@keyframes bg-animation{
+  0% {background-position:left}
+  50% {background-position:right}
+  100%{background-position:left}
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  min-height: 87vh;
+}
+
+.page-title {
+  color: #ffffff;
+  margin: 0 0 5px;    
+  filter: brightness(90%) opacity(0.6);
+}
+
+.page-subtitle,
+p,
+label,
+legend {
+  color: #ffffff;
+  margin-top: 16px;  
+}
+
+.page-subtitle{
+  position: relative;
+  transform: translateX(-50%);
+  left: 50%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  background-color: rgba(66,66,66,0.6);
+  padding: 10px;
+  border: solid 1px #fff;
+  border-radius: 10px;
+  width: 30rem;
+}
+
+.page-logo {
+  width: 200px;
+  filter: hue-rotate(75deg) brightness(85%) opacity(0.75);
+}
+
+.alura-logo {
+  width: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+fieldset{
+   background-color: rgba(66,66,66,0.6);
+   padding-bottom: 16px;
+   margin-bottom: 15px;   
+  border-radius: 10px;
+}
+
+.formularioReinicia{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20vw;
+}
+
+input,
+button{
+   cursor: pointer;
+}
+
+input {
+  margin: 4px;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 12px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  background-color: #56478044;
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 1px 1px 10px #442222;
+}
+
+input:disabled,
+button:disabled{
+   background-color: rgba(256,256,256,0.7);
+   cursor:not-allowed;
+}
+
+#mensagemErro,
+#mensagemErroDois{
+  margin-bottom: 10px;
+}
+
+.escondido{
+   display: none;
+}
+
+footer{
+   background-color: #000;
+   opacity: 0.4;
+   width: 100vw;
+   min-height: 13vh;
+   display: flex;
+   justify-content: space-around;
+   align-items: center; 
+   margin: 0;
+   padding: 1.5vw;
+   border: none;
+}
+
+footer p{
+   color: #fff;
+   font-size: 1.2rem;
+   font-weight: bold;
+   text-align: center;
+}
+
+footer a{
+   text-decoration: none;
+   transition: 1s;
+}
+
+footer a:hover,
+footer a p:hover{
+   cursor: pointer;
+   color: #DDDD00;
+   font-size: 1.3rem;
+}
+
+
+@media(max-width:700px){
+  fieldset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formularioReinicia{
+    width: 50vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .page-subtitle{
+    font-size: 1rem;
+    font-weight: normal;
+    width: 80vw;
+  } 
+
+
+  footer p{
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+  footer a{
+   text-decoration: underline;
+   text-decoration-color: #fff;
+  }
+}
+
+@media(max-width:300px){
+  .page-logo {
+    width: 65vw;
+  }
+
+  .formularioReinicia{
+    width: 80vw;
+  }
+    
+  footer{
+    flex-direction: column;
+  }
+
+}  

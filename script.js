@@ -121,6 +121,9 @@ function comparaChute(){
    let chuteValor = parseInt(chute.value);
    chute.value = "";
    let mensagemResultado = document.querySelector("#mensagemResultado");
+   let numInicialInteiro = parseInt(numInicial.value);
+   let numFinalInteiro = parseInt(numFinal.value);
+   let escala = numFinalInteiro-numInicialInteiro;
    if(chuteValor === numeroSorteado){
       mensagemResultado.classList.remove("escondido");
       mensagemResultado.innerHTML = `Parabéns, você acertou! O número é ${numeroSorteado}! Clique no Reiniciar para jogar de novo!`;
@@ -137,7 +140,7 @@ function comparaChute(){
       } else if(tentativas === ""){
          mensagemResultado.classList.remove("escondido");
          let diferencaPositiva = Math.sign(chuteValor-numeroSorteado)===1 ? chuteValor-numeroSorteado : numeroSorteado-chuteValor;
-         if(diferencaPositiva<qtdChancesValor/4){
+         if(diferencaPositiva<(escala/4)){
             mensagemResultado.innerHTML = `Primeira tentativa e já está quente! Tente de novo. Você tem mais ${qtdChancesValor} chances.`;         
          } else{
             mensagemResultado.innerHTML = `Está um pouco longe do seu alvo. Mas essa é só a primeira tentativa! Tente de novo. Você tem mais ${qtdChancesValor} chances.`; 
@@ -147,7 +150,7 @@ function comparaChute(){
          mensagemResultado.classList.remove("escondido");
          let diferencaPositivaAntigo = Math.sign(tentativas-numeroSorteado)===1 ? tentativas-numeroSorteado : numeroSorteado-tentativas;
          let diferencaPositivaNovo = Math.sign(chuteValor-numeroSorteado)===1 ? chuteValor-numeroSorteado : numeroSorteado-chuteValor;
-         let frioOuQuente = diferencaPositivaNovo<qtdChancesValor/4 ? "quente" : "frio";
+         let frioOuQuente = diferencaPositivaNovo<(escala/4) ? "quente" : "frio";
          if(diferencaPositivaAntigo>diferencaPositivaNovo){
             let mensagem = frioOuQuente ==="quente"? ", cada vez mais quente" : ", mas ainda está frio";
             mensagemResultado.innerHTML = `Está mais perto do seu alvo${mensagem}! Esse é o caminho. Tente de novo. Você tem mais ${qtdChancesValor} chances.`;
@@ -159,7 +162,7 @@ function comparaChute(){
       }  else{
          mensagemResultado.classList.remove("escondido"); 
          let diferencaPositivaNovo = Math.sign(chuteValor-numeroSorteado)===1 ? chuteValor-numeroSorteado : numeroSorteado-chuteValor;
-         let frioOuQuente = diferencaPositivaNovo<qtdChancesValor/4 ? "quente" : "frio"; 
+         let frioOuQuente = diferencaPositivaNovo<(escala/4) ? "quente" : "frio"; 
          let mensagem = frioOuQuente ==="quente"? ", e está bem perto!" : ", mas foi longe demais. Volte alguns números.";       
          mensagemResultado.innerHTML = `Você passou pelo seu alvo${mensagem} O número sorteado está entre este chute e o anterior. Você tem mais ${qtdChancesValor} chances.`;
          tentativas = chuteValor;

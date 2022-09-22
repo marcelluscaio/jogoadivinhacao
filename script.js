@@ -42,12 +42,11 @@ function validaNumeros(){
       mensagemErro.classList.remove("escondido");
       mensagemErro.innerHTML = "O número final deve ser maior que o número inicial";
       erro=true;
-   } else if(parseInt(numFinalValor)-parseInt(numInicialValor)<=parseInt(qtdChancesValor)){
+   } else if(parseInt(numFinalValor)-parseInt(numInicialValor)<=parseInt(qtdChancesValor)*3){
       mensagemErro.classList.remove("escondido");
-      mensagemErro.innerHTML = "Assim fica fácil, fera! O número final deve ser maior que a soma do número inicial com a quantidade de chances";
+      mensagemErro.innerHTML = "Assim fica fácil, fera! O número final deve ser maior que a soma do número inicial com o triplo da quantidade de chances";
       erro=true;
-
-   }     
+   }   
 }
 
 function sorteiaNumero(){   
@@ -91,7 +90,7 @@ function fazTentativa(e){
    } else{
    let mensagemErroDois = document.querySelector("#mensagemErroDois"); 
    mensagemErroDois.classList.add("escondido");
-   mensagemErroDois.innerHTML = ""
+   mensagemErroDois.innerHTML = "";
    comparaChute();
    }
 }
@@ -112,10 +111,15 @@ function validaChute(){
       mensagemErroDois.classList.remove("escondido");
       mensagemErroDois.innerHTML = "Esse não foi um chute muito bom. Chute dentro da escala =)";
       erro=true;
-   }   
+   } else if(arrChute.includes(parseInt(chuteValor))){
+      mensagemErroDois.classList.remove("escondido");
+      mensagemErroDois.innerHTML = "Esse você já chutou";
+      erro=true;
+   }      
 }
 
 let tentativas ="";
+let arrChute = [];
 
 function comparaChute(){
    let chuteValor = parseInt(chute.value);
@@ -132,6 +136,18 @@ function comparaChute(){
 
    } else{
       qtdChancesValor--;
+      let listaChute = document.querySelector("#listaChutes");
+      listaChute.classList.remove("escondido");      
+      arrChute.push(parseInt(chuteValor));
+      listaChute.innerHTML ="";
+      for(i=0;i<arrChute.length;i++){
+         if(i===arrChute.length-1){
+            listaChute.innerHTML += `${arrChute[i]}`;
+         } else{
+            listaChute.innerHTML += `${arrChute[i]} - `;      
+         }         
+      }      
+
       if(qtdChancesValor === 0){
          mensagemResultado.classList.remove("escondido");
          mensagemResultado.innerHTML = `Puxa, você esgotou suas tentativas. O número era ${numeroSorteado}. Clica aqui embaixo no Reiniciar para jogar de novo!`;
@@ -186,6 +202,16 @@ function reiniciar(e){
    let mensagemResultado = document.querySelector("#mensagemResultado");
    mensagemResultado.classList.add("escondido");
    mensagemResultado.innerHTML = "";
-   chute.value =""
+   chute.value ="";
    tentativas ="";
+   arrChute=[];   
+   let mensagemErroDois = document.querySelector("#mensagemErroDois");
+   let mensagemErro = document.querySelector("#mensagemErro");
+   let listaChute = document.querySelector("#listaChutes");
+   listaChute.classList.add("escondido");      
+   listaChute.innerHTML ="";
+   mensagemErro.innerHTML="";
+   mensagemErroDois.innerHTML="";
+   mensagemErro.classList.add("escondido");
+   mensagemErroDois.classList.add("escondido");
 }
